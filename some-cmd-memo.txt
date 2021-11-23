@@ -2,24 +2,22 @@
 # Login to Heroku
 heroku login
 
-# Review Heroku config
+# Review Heroku config for specified application, such as DATABASE_URL
 heroku config
 
 # Review PostgreSQL instance in Heroku for specified application
-heroku pg --app nccu-cicd-demo-1123
+heroku pg --app <app name>
 
-# 
-heroku addons:create heroku-postgresql --app nccu-cicd-demo-gh
+# instantiate PostgreSQL
+heroku addons:create heroku-postgresql --app <app name>
 
-heroku pg:psql --app nccu-cicd-demo-gh
+# Connect to PostgreSQL server 
+heroku pg:psql --app <app name>
+for example:
+  	heroku pg:psql --app nccu-cicd-demo-gh-1123-2
+	heroku pg:psql --app nccu-cicd-demo-gh-1123-prod-2
 
-run init-script
+# attach existing PstgreSQL DB from another app
+heroku addons:attach <another app name>::DATABASE --app <new-app name>
 
-heroku addons:attach nccu-cicd-demo-gh-1123::DATABASE --app  nccu-cicd-de-posgresql-aedfn0n <new-app name>
 
-
-git checkout -b posgresql
-git push -u origin posgresql
-
-heroku pg:psql --app nccu-cicd-demo-gh-1123
-heroku pg:psql --app nccu-cicd-demo-gh-1123-prod
